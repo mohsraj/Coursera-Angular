@@ -6,13 +6,24 @@ angular.module('LunchCheck', [])
 
 LunchCheckController.$inject = ['$scope', '$filter'];
 function LunchCheckController($scope) {
-  $scope.status = "11";
-  console.log("11");
+  $scope.inp="";
 
   $scope.cal = function () {
-    console.log("22");
-    $scope.status="22"; 
+    var t=$scope.inp.split(",");
+   
+   if (t.length<4)
+      $scope.msg="Enjoy!";
+    else
+      $scope.msg="Too much!";
+    for (var i = t.length - 1; i >= 0; i--) {
+      if (t[i].trim()=="")
+      {
+        i=i+1;
+        $scope.msg="Part "+i+" is empty";
+        break;
+      }
+    };
   };
-}
+};
 
 })();
